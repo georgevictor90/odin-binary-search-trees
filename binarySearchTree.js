@@ -148,17 +148,6 @@ class Tree {
     return Math.max(leftHeight, rightHeight) + 1;
   }
 
-  // depth(nodeVal, root = this.root, depth = 0) {
-  //   debugger
-  //   if (!nodeVal) throw new Error('Please provide a node value as parameter');
-  //   if (root === null) return
-  //   if (root.data < nodeVal) {
-  //     return this.depth(nodeVal, root.right, depth + 1)
-  //   } else {
-  //     return this.depth(nodeVal, root.left, depth + 1)
-  //   }
-  // }
-
   depth(node) {
     if (node === null || node === this.root) return 0;
 
@@ -176,6 +165,20 @@ class Tree {
       }
     }
     return depth;
+  }
+
+  isBalanced(node = this.root) {
+    if (!node) return null;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1)
+      return false;
+    return true;
+  }
+
+  rebalance(root = this.root) {
+    if (this.isBalanced() === true) return;
+    this.root = this.buildTree(this.inorder());
   }
 
   removeDuplicates(sortedArr) {
