@@ -117,6 +117,30 @@ class Tree {
     if (result[0].length) return result;
   }
 
+  inorder(node = this.root, callback, result = []) {
+    if (node === null) return;
+    this.inorder(node.left, callback, result);
+    callback ? callback(node.data) : result.push(node.data);
+    this.inorder(node.right, callback, result);
+    if (result.length > 0) return result;
+  }
+
+  preorder(node = this.root, callback, result = []) {
+    if (node === null) return;
+    callback ? callback(node.data) : result.push(node.data);
+    this.preorder(node.left, callback, result);
+    this.preorder(node.right, callback, result);
+    if (result.length > 0) return result;
+  }
+
+  postorder(node = this.root, callback, result = []) {
+    if (node === null) return;
+    this.postorder(node.left, callback, result);
+    this.postorder(node.right, callback, result);
+    callback ? callback(node.data) : result.push(node.data);
+    if (result.length > 0) return result;
+  }
+
   removeDuplicates(sortedArr) {
     return [...new Set(sortedArr)];
   }
