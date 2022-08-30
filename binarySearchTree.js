@@ -141,6 +141,43 @@ class Tree {
     if (result.length > 0) return result;
   }
 
+  height(node = this.root) {
+    if (node === null) return -1;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  // depth(nodeVal, root = this.root, depth = 0) {
+  //   debugger
+  //   if (!nodeVal) throw new Error('Please provide a node value as parameter');
+  //   if (root === null) return
+  //   if (root.data < nodeVal) {
+  //     return this.depth(nodeVal, root.right, depth + 1)
+  //   } else {
+  //     return this.depth(nodeVal, root.left, depth + 1)
+  //   }
+  // }
+
+  depth(node) {
+    if (node === null || node === this.root) return 0;
+
+    let depth = 0;
+    let current = this.root;
+
+    while (current !== node) {
+      depth++;
+
+      if (current.data > node.data) {
+        current = current.left;
+      }
+      if (current.data < node.data) {
+        current = current.right;
+      }
+    }
+    return depth;
+  }
+
   removeDuplicates(sortedArr) {
     return [...new Set(sortedArr)];
   }
