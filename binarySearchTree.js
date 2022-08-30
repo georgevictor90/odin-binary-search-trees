@@ -1,4 +1,4 @@
-export class Node {
+class Node {
   constructor(data) {
     this.data = data;
     this.left = null;
@@ -6,7 +6,7 @@ export class Node {
   }
 }
 
-export class Tree {
+export default class Tree {
   constructor(arr) {
     this.root = this.buildTree(arr);
   }
@@ -65,27 +65,6 @@ export class Tree {
     }
     return minv;
   }
-
-  // levelOrder(callback) {
-  //   if (this.root == null) return [];
-  //   let queue = [this.root];
-  //   let result = [];
-
-  //   while (queue.length) {
-  //     let currentNode = queue.shift();
-  //     callback ? callback(currentNode) : result.push(currentNode.data)
-
-  //     if (currentNode.left) {
-  //       queue.push(currentNode.left)
-  //     }
-  //     if (currentNode.right) {
-  //       queue.push(currentNode.right)
-  //     }
-  //   }
-  //   if (result.length > 0) return result
-  // }
-
-  // levelOrder(node => {console.log(node.data + '<BR>')})
 
   levelOrder(callback) {
     let result = [];
